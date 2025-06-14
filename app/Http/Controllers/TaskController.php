@@ -8,10 +8,18 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    // WAJIB: Pastikan semua fungsi hanya untuk user yang login
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     // Tampilkan semua task milik user yang login
     public function index()
     {
-        $tasks = Task::where('user_id', Auth::id())->get();
+        $userId = Auth::id(); // atau auth()->id()
+        $tasks = Task::where('user_id', $userId)->get();
+
         return view('tasks.index', compact('tasks'));
     }
 
@@ -32,8 +40,13 @@ class TaskController extends Controller
             'status' => 'required|in:pending,completed',
         ]);
 
+        $userId = Auth::id();
+        if (!$userId) {
+            return redirect()->route('login')->withErrors('Session tidak ditemukan. Silakan login ulang.');
+        }
+
         Task::create([
-            'user_id' => Auth::id(),
+            'user_id' => $userId,
             'title' => $request->title,
             'category' => $request->category,
             'description' => $request->description,
@@ -48,19 +61,17 @@ class TaskController extends Controller
     public function show($id)
     {
         $task = Task::where('user_id', Auth::id())->findOrFail($id);
-        return view('tasks.show', compact('task')); // ← ini juga
+        return view('tasks.show', compact('task'));
     }
 
-
-    // Form edit
+    // Form edit task
     public function edit($id)
     {
         $task = Task::where('user_id', Auth::id())->findOrFail($id);
-        return view('tasks.edit', compact('task')); // ← ini penting
+        return view('tasks.edit', compact('task'));
     }
 
-
-    // Simpan update
+    // Simpan update task
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -72,7 +83,7 @@ class TaskController extends Controller
         ]);
 
         $task = Task::where('user_id', Auth::id())->findOrFail($id);
-        $task->update($request->all());
+        $task->update($request->only(['title', 'category', 'description', 'due_date', 'status']));
 
         return redirect()->route('tasks.index')->with('success', 'Task berhasil diperbarui!');
     }

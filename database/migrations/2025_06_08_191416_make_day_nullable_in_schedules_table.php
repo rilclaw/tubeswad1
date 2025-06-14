@@ -12,7 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->string('day')->nullable()->change();
+            $table->string('day')->nullable(); // Tambahkan di awal
+
         });
     }
 

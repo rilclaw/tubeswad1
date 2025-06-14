@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
 
     //  Tugas / Tasks
     Route::resource('tasks', TaskController::class);
+    
+
 
     //  Events
     Route::resource('events', EventController::class);

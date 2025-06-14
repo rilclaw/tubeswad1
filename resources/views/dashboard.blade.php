@@ -160,7 +160,7 @@
     <ul>
       <li><a href="{{ route('tasks.index') }}">🗂 Daftar Pengingat</a></li>
       <li><a href="{{ route('daily-notes.index') }}">📝 Catatan Harian</a></li>
-      <li><a href="{{ route('account.settings') }}">⚙️ Pengaturan Akun</a></li>
+      <li><a href="{{ route('account.settings') }}">⚙ Pengaturan Akun</a></li>
     </ul>
   </div>
 
@@ -205,7 +205,7 @@
                 @endif
                 •
                 @if($task->status === 'completed')
-                  <span style="color: green;">✔️ Selesai</span>
+                  <span style="color: green;">✔ Selesai</span>
                 @else
                   <span style="color: orange;">⏳ Belum Selesai</span>
                 @endif

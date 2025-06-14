@@ -5,7 +5,7 @@
 | Nama Lengkap                    | NIM           | Peran                                          | GitHub Username          |
 |----------------------------------|---------------|------------------------------------------------|---------------------------|
 | Muhammad Galih Ilham            | 102022300364  | CRUD Task (Pengingat), Kalender,Jadwal /Schedule , kategori tugas , dan filter  | @Gkyerie                   |
-| Ghifari Derriel Aryasatya       | 102022330310  | CRUD Akun & Pengaturan Akun, Dashboard , Notifikasi catatan harian / daily notes | @Rilclaw                   |
+| Ghifari Derriel Aryasatya       | 102022330310  | CRUD Akun & Pengaturan Akun, Dashboard , Notifikasi catatan harian / daily notes | @rilclaw                   |
 
 ## 📝 Penjelasan Singkat Proyek
 
